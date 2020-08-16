@@ -2,13 +2,13 @@ import React from "react";
 
 function InfoBox({ title, cases, newCases, color }) {
   return (
-    <h2 class="legend">
-      <div class="color" style={{ backgroundColor: color }}></div>
-      <div class="description">{title}</div>
-      <div class="total">
+    <h2 className="legend">
+      <div className="color" style={{ backgroundColor: color }}></div>
+      <div className="description">{title}</div>
+      <div className="total">
         {cases}
         {newCases ? (
-          <div class="delta" title="new cases over the last 24 hours">
+          <div className="delta" title="new cases over the last 24 hours">
             +{newCases}
           </div>
         ) : (

@@ -1,7 +1,26 @@
-import React from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import InfoBox from "./InfoBox";
+import CasesBar from "./CasesBar";
 
-function Overview({ country }) {
+function Overview({ country, fnSetCasesType }) {
+  const [barCases, setBarCases] = useState({});
+
+  useEffect(() => {
+    const casesList = {
+      active: country.active,
+      recovered: country.recovered,
+      deaths: country.deaths,
+    };
+    setBarCases(casesList);
+  }, [country]);
+
+  const fnSetCasesTypeinover = useCallback(
+    (type) => {
+      fnSetCasesType(type);
+    },
+    [fnSetCasesType]
+  );
+
   return (
     <div className="overview">
       <div className="overviewContent">
@@ -16,6 +35,11 @@ function Overview({ country }) {
               +{country.todayCases}
             </div>
           </div>
+
+          <CasesBar
+            barCases={barCases}
+            fnSetCasesTypeinover={fnSetCasesTypeinover}
+          />
 
           <div className="infoTileData">
             <InfoBox

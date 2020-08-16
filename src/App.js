@@ -10,6 +10,11 @@ function App() {
   const [countries, setCountries] = useState([]);
   const [countryInfo, setCountryInfo] = useState({});
   const [worldwideInfo, setWorldwideInfo] = useState({});
+  const [mapCenter, setMapCenter] = useState({ lat: 34.80746, lng: -40.4796 });
+  const [mapZoom, setMapZoom] = useState(3);
+  const [mapCountries, setMapCountries] = useState([]);
+  const [caseType, setCaseType] = useState("cases");
+
   useEffect(() => {
     const fetchCountires = async () => {
       const res = await axios.get("countries");
@@ -20,6 +25,7 @@ function App() {
         cases: country.cases,
       }));
       setCountries(countries);
+      setMapCountries(res.data);
     };
 
     const fetchWorldwideInfo = async () => {
@@ -32,8 +38,13 @@ function App() {
     fetchWorldwideInfo();
   }, []);
 
-  const fnSetCountryInfo = useCallback((val) => {
-    setCountryInfo(val);
+  const fnSetCountryInfo = useCallback((data) => {
+    setCountryInfo(data);
+    setMapCenter({ lat: data.countryInfo.lat, lng: data.countryInfo.long });
+    setMapZoom(4);
+  }, []);
+  const fnSetCasesType = useCallback((type) => {
+    setCaseType(type);
   }, []);
 
   return (
@@ -47,8 +58,13 @@ function App() {
           />
         </div>
         <div className="app__right">
-          <Overview country={countryInfo} />
-          <Map />
+          <Overview country={countryInfo} fnSetCasesType={fnSetCasesType} />
+          <Map
+            countries={mapCountries}
+            caseType={caseType}
+            center={mapCenter}
+            zoom={mapZoom}
+          />
         </div>
       </div>
     </div>
