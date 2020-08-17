@@ -58,7 +58,7 @@ function App() {
           />
         </div>
         <div className="app__right">
-          {countryInfo.lenght > 0 ? (
+          {Object.keys(countryInfo).length > 0 ? (
             <Overview country={countryInfo} fnSetCasesType={fnSetCasesType} />
           ) : (
             ""
