@@ -1218,3 +1218,67 @@ svg {
     flex-grow: 1;
   }
 }
+.sortContainer {
+  font-size: 13px;
+  line-height: 20px;
+  margin-top: 16px;
+  display: grid;
+  grid-template-columns: auto max-content;
+  justify-content: space-between;
+}
+.sortTitle {
+  color: rgb(51, 51, 51);
+  font-weight: 600;
+  padding-top: 6px;
+}
+.sortActiveItem {
+  color: rgb(68, 68, 68);
+  padding: 6px 12px 6px 16px;
+  border-radius: 16px;
+  background: rgb(238, 238, 238);
+  display: flex;
+  cursor: pointer;
+}
+.sortActiveItem span {
+  display: flex;
+  align-items: center;
+}
+.sortActiveItem .sortDropDownItemIcon {
+  padding: 0px 8px;
+}
+svg {
+  display: block;
+}
+.sortMenuIcon {
+  padding: 8px 0px 0px;
+}
+.sortDropdown {
+  min-width: 160px;
+  background: rgb(255, 255, 255);
+  position: absolute;
+  z-index: 999;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  box-shadow: rgba(0, 0, 0, 0.12) 0px 3px 5px;
+  border-radius: 6px;
+  margin-top: 8px;
+  cursor: pointer;
+}
+.sortDropdownItem {
+  padding: 10px 16px;
+  color: rgb(102, 102, 102);
+  display: flex;
+  justify-content: space-between;
+}
+.sortDropdownItem:hover {
+  background: rgb(238, 238, 238);
+  color: rgb(68, 68, 68);
+}
+.sortDropDownItemIcon {
+  padding: 3px 0px 0px 16px;
+  pointer-events: none;
+}
+@media not all, not all {
+  .sortContainer {
+    display: flex;
+  }
+}

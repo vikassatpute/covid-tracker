@@ -58,7 +58,11 @@ function App() {
           />
         </div>
         <div className="app__right">
-          <Overview country={countryInfo} fnSetCasesType={fnSetCasesType} />
+          {countryInfo.lenght > 0 ? (
+            <Overview country={countryInfo} fnSetCasesType={fnSetCasesType} />
+          ) : (
+            ""
+          )}
           <Map
             countries={mapCountries}
             caseType={caseType}

@@ -7,3 +7,24 @@
 .map .leaflet-container {
   height: 100%;
 }
+
+.popupDetails__flag {
+  width: 100%;
+}
+.popupDetails__flag img {
+  width: 100%;
+  max-width: 100%;
+}
+.popupDetails strong {
+  font-weight: 500;
+  margin-top: 10px;
+  display: inline-block;
+  font-size: 14px;
+}
+.popupDetails p {
+  font-size: 14px;
+  margin: 5px 0;
+}
+.popupDetails p strong {
+  margin: 0;
+}

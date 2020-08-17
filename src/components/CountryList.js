@@ -1,8 +1,16 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "../plugins/axios";
+import { sortData } from "../utilities/util";
+import Sort from "./Sort";
 
 function CountryList({ countries, fnSetCountryInfo }) {
   const [selectedCountry, setSelectedCountry] = useState("");
+  const [sortedCountries, setSortedCountries] = useState([]);
+
+  useEffect(() => {
+    const sortedData = sortData(countries);
+    setSortedCountries(sortedData);
+  }, [countries]);
 
   const onCountryCode = async (e) => {
     console.log(e.target);
@@ -14,10 +22,15 @@ function CountryList({ countries, fnSetCountryInfo }) {
     console.log(res.data);
     fnSetCountryInfo(res.data);
   };
+
+  const fnSetSortedCountries = (sortedData) => {
+    setSortedCountries(sortedData);
+  };
   return (
     <div className="combinedArea">
+      <Sort countries={countries} fnSetSortedCountries={fnSetSortedCountries} />
       <div className="areas deep">
-        {countries.map((country) => (
+        {sortedCountries?.map((country) => (
           <div className="areaDiv" key={country.name}>
             <div
               onClick={onCountryCode}
@@ -25,7 +38,7 @@ function CountryList({ countries, fnSetCountryInfo }) {
               className={
                 country.value === selectedCountry ? "area selected" : "area"
               }
-              tabindex="0"
+              tabIndex="0"
             >
               <div className="areaName" title={country.name}>
                 {country.name}
